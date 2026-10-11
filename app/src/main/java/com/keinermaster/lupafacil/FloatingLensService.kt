@@ -657,8 +657,8 @@ class FloatingLensService : Service() {
         val params = layoutParams ?: return
         val (offsetX, offsetY) = view.getLensCenterOffset()
 
-        windowX = screenW / 2f - offsetX
-        windowY = screenH / 2f - offsetY
+        windowX = screenWidth / 2f - offsetX
+        windowY = screenHeight / 2f - offsetY
         val (clampedX, clampedY) = clampWindowForLens(view, windowX, windowY)
         windowX = clampedX
         windowY = clampedY
@@ -719,9 +719,9 @@ class FloatingLensService : Service() {
     private fun clampWindowForLens(view: FloatingLensView, x: Float, y: Float): Pair<Float, Float> {
         val (offsetX, offsetY) = view.getLensCenterOffset()
         val minX = -offsetX
-        val maxX = (screenW - offsetX).coerceAtLeast(minX)
+        val maxX = (screenWidth - offsetX).coerceAtLeast(minX)
         val minY = -offsetY
-        val maxY = (screenH - offsetY).coerceAtLeast(minY)
+        val maxY = (screenHeight - offsetY).coerceAtLeast(minY)
         return Pair(x.coerceIn(minX, maxX), y.coerceIn(minY, maxY))
     }
 
